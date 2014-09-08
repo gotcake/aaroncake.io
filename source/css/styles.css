@@ -1,0 +1,90 @@
+html, body, #master-container {
+    height: 100%;
+    font-size: 14px;
+}
+
+body > #master-container {
+     height: auto; min-height: 100%;
+     padding-bottom: 3em;
+}
+
+#content-container {
+    min-height: 100%;
+    padding-top: 50px;
+}
+
+footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    padding: 10px;
+    height: 3em;
+    margin-top: -3em;
+}
+
+.indent-1 {
+    padding-left: 15px;
+}
+.indent-2 {
+    padding-left: 30px;
+}
+
+.jumbotron, .jumbotron-thin, footer {
+    background-color: #eee;
+}
+
+.jumbotron h1, h1, .h1 {
+    color: #005296;
+}
+
+.jumbotron h2, h2, .h2 {
+    color: #111;
+}
+
+pre.code {
+    max-height: 500px;
+    overflow: auto;
+}
+
+a {
+    color: #005296;
+}
+
+.navbar-custom a {
+    color: inherit;
+}
+
+.navbar-custom .navbar-toggle {
+    background-color: #005296;
+}
+
+.navbar-custom .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+.navbar-custom .navbar-toggle:hover, .navbar-custom li a:hover {
+    background-color: #0069C0;
+}
+
+.navbar-custom li.active {
+     background-color: #005296;
+}
+
+
+.jumbotron-thin {
+    margin-bottom: 10px;
+    padding: 5px 10px 10px 10px;
+}
+
+button:hover, .btn:hover {
+    background-color: #ddd;
+}
+
+.header-button-right {
+    float: right;
+    margin-top: 0px;
+}
+
+.construction-alert {
+    color: #0069C0;
+}

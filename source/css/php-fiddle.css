@@ -1,0 +1,12 @@
+.editor {
+    padding: 10px;
+    line-height: 1.4em;
+}
+
+.editor-line {
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    background-color: inherit;
+    height: 1.38em;
+}

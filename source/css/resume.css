@@ -1,0 +1,84 @@
+#resume-container {
+    margin: 20px 0px 20px 0px;
+    font-size: 13px;
+}
+
+#resume-container {
+    font-family: verdana;
+    font-size: 13px;
+}
+
+#resume-container ul {
+    list-style-type: square;
+}
+
+#contact-info-small {
+    display: none;
+}
+
+#resume-container .text-large {
+    font-size: 17px;
+}
+
+#resume-container .name {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+#resume-container h1, #resume-container .h1 {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#resume-container h2, #resume-container .h2 {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+}
+
+@media (min-width: 768px) { 
+    #resume-container {
+        border: 1px solid #eee;
+        background-color: white;
+        -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
+        padding: 20px 15px 20px 15px;
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 992px) { 
+    #resume-container {
+        padding: 60px 35px 60px 35px;
+        font-size: 14px;
+    }
+    #resume-container .text-large, #resume-container h1, #resume-container .h1 {
+        font-size: 18px;
+    }
+    #resume-container h2, #resume-container .h2 {
+        font-size: 14px;
+    }
+    #resume-container .name {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1200px) { 
+    #resume-container {
+        padding: 90px 65px 90px 65px;
+    }
+}
+
+@media (max-width: 599px) { 
+    #contact-info-small {
+        display: block;
+    }
+    #contact-info-large {
+        display: none;
+    }
+}
+
+#resume-download-button {
+    margin-left: 20px;
+}
