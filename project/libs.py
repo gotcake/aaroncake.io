@@ -327,35 +327,51 @@ def mkdir(*dirs):
         elif not os.path.isdir(dir):
             raise IOError('Unable to create directory. {} already exists, but is not a directory.'.format(dir))
 
-def rsyncTo(remotePath, localPath=os.path.realpath('.'), exclusionsFile=None):
+def rsyncTo(user, host, remote_path, perm_user_group=None, perms=None, local_path=os.path.realpath('.'), exclusions_file=None):
     """
     Syncs the files to a remote location.
     All parameters must be absolute paths.
     """
-    print 'Syncing files from \'{}\' to \'{}\'... '.format(localPath, remotePath)
+
+    remoteUserHost = '{}@{}'.format(user, host)
+    remoteUserHostPath = '{}:{}'.format(remoteUserHost, remote_path)
+
+    print 'Syncing files from \'{}\' to \'{}\'... '.format(local_path, remoteUserHostPath)
     sys.stdout.flush()
     args = ['rsync','-azO','--no-perms','--delete']
-    if exclusionsFile:
-        args.append('--exclude-from={}'.format(exclusionsFile))
-    args.append('{}/'.format(localPath))
-    args.append(remotePath)
+    if exclusions_file:
+        args.append('--exclude-from={}'.format(exclusions_file))
+    args.append('{}/'.format(local_path))
+    args.append(remoteUserHostPath)
 
     try:
         subprocess.check_call(args)
     except subprocess.CalledProcessError as e:
         raise Exception('Failed to sync files. rsync returned error code: {}'.format(e.returncode))
 
+    if perm_user_group:
+        try:
+            subprocess.check_call(['ssh', remoteUserHost, 'chown -R {} {}'.format(perm_user_group, remote_path)])
+        except subprocess.CalledProcessError as e:
+            raise Exception('Failed to set user and group on remote path. returned error code: {}'.format(e.returncode))
+
+    if perms:
+        try:
+            subprocess.check_call(['ssh', remoteUserHost, 'chmod -R {} {}'.format(perms, remote_path)])
+        except subprocess.CalledProcessError as e:
+            raise Exception('Failed to set perms on remote path. returned error code: {}'.format(e.returncode))
+
 def includeResources(file, sources, includeComments=True):
     spliceText = []
     if includeComments:
         spliceText.append('\n<!-- {includes} -->')
     for source in sources:
-        base, ext = os.path.split(source)
-        if ext == 'js':
+        base, ext = os.path.splitext(source)
+        if ext == '.js':
             spliceText.append('\n<script type="text/javascript" src="')
             spliceText.append(source)
             spliceText.append('"></script>')
-        elif ext == 'css':
+        elif ext == '.css':
             spliceText.append('\n<link rel="stylesheet" type="text/css" href="')
             spliceText.append(source)
             spliceText.append('"/>')

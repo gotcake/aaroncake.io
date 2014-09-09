@@ -29,6 +29,7 @@ def dev():
 		'js/routing/cache.js',
 		'js/routing/simpleanimate.js',
 		'js/routing/routing.js',
+		'js/app.js',
 	])
 
 def production():
@@ -50,7 +51,7 @@ def production():
 	includeResources('public/index.html', [
 		'css/app.css',
 		'js/app.js',
-		])
+		], False)
 	optimizeHTML('public/index.html')
 
 def clean():
@@ -58,7 +59,12 @@ def clean():
 	mkdir('public')
 
 def sync():
-	rsyncTo('aaron@aaroncake.io:/web/dev')
+	rsyncTo(
+		user='aaron',
+		host='aaroncake.io',
+		remote_path='/web/dev',
+		exclusions_file='project/rsync_exclusions.txt'
+		)
 
 if __name__ == '__main__':
 
